@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherInfo", "WeatherInfo\WeatherInfo.csproj", "{D229897E-E08F-495D-9DB1-BC7DB1EA2EF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherInfo.UITests", "WeatherInfo.UITests\WeatherInfo.UITests.csproj", "{3BD67A8C-DE84-4744-AC34-3D6801D27118}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BD67A8C-DE84-4744-AC34-3D6801D27118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD67A8C-DE84-4744-AC34-3D6801D27118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD67A8C-DE84-4744-AC34-3D6801D27118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD67A8C-DE84-4744-AC34-3D6801D27118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D229897E-E08F-495D-9DB1-BC7DB1EA2EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D229897E-E08F-495D-9DB1-BC7DB1EA2EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D229897E-E08F-495D-9DB1-BC7DB1EA2EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D229897E-E08F-495D-9DB1-BC7DB1EA2EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
