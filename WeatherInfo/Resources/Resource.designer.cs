@@ -60,8 +60,32 @@ namespace WeatherInfo
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050002
+			public const int imgWeatherIcon = 2131034114;
+			
+			// aapt resource value: 0x7f050006
+			public const int lblDevider1RP = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int lblDevider2RP = 2131034119;
+			
+			// aapt resource value: 0x7f050004
+			public const int lblProductNameRP = 2131034116;
+			
+			// aapt resource value: 0x7f050008
+			public const int lblProductNameRP2 = 2131034120;
+			
+			// aapt resource value: 0x7f050003
+			public const int llWeatherDataTxt = 2131034115;
+			
+			// aapt resource value: 0x7f050001
+			public const int rlTopMainContainer = 2131034113;
+			
 			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			public const int txtSearch = 2131034112;
+			
+			// aapt resource value: 0x7f050005
+			public const int version = 2131034117;
 			
 			static Id()
 			{
