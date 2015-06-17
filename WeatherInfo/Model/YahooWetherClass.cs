@@ -56,7 +56,7 @@ namespace WeatherInfo
 			public string text { get; set; }
 		}
 
-		public class Forecast
+	public class Forecast
 		{
 			public string code { get; set; }
 			public string date { get; set; }

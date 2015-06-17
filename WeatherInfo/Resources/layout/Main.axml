@@ -3,8 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:background="#ffa6a6a6">
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/txtSearch"
         android:inputType="text"
         android:imeOptions="actionSearch"
@@ -44,7 +45,7 @@
         <LinearLayout
             android:id="@+id/llWeatherDataTxt"
             android:orientation="vertical"
-            android:layout_width="210dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="#ffeeeeee"
             android:layout_marginTop="5dp"
@@ -136,13 +137,13 @@
         </LinearLayout>
         <ImageView
             android:src="@drawable/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:id="@+id/imgWeatherIcon"
             android:layout_toRightOf="@+id/llWeatherDataTxt"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="1dp"
             android:layout_centerInParent="false"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="20dp" />
         <TextView
             android:id="@+id/lblSunrise"
             android:layout_below="@+id/llWeatherDataTxt"
@@ -177,7 +178,7 @@
             android:layout_below="@+id/lblSunrise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:maxLines="2"
             android:minLines="1"
             android:text="Partly cloudy"
@@ -185,7 +186,8 @@
             android:textStyle="bold"
             android:textColor="#ff000000"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:gravity="center" />
     </RelativeLayout>
     <TextView
         android:id="@+id/lblForeCastHeadingTxt"
