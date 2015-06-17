@@ -60,8 +60,8 @@ namespace WeatherInfo
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050015
-			public const int ListViewForeCast = 2131034133;
+			// aapt resource value: 0x7f050016
+			public const int ListViewForeCast = 2131034134;
 			
 			// aapt resource value: 0x7f050011
 			public const int imgWeatherIcon = 2131034129;
@@ -69,14 +69,14 @@ namespace WeatherInfo
 			// aapt resource value: 0x7f050002
 			public const int imgWeatherIconFCL = 2131034114;
 			
-			// aapt resource value: 0x7f050013
-			public const int lblConditionText = 2131034131;
+			// aapt resource value: 0x7f050012
+			public const int lblConditionText = 2131034130;
 			
 			// aapt resource value: 0x7f050007
 			public const int lblCurrentLocation = 2131034119;
 			
-			// aapt resource value: 0x7f050014
-			public const int lblForeCastHeadingTxt = 2131034132;
+			// aapt resource value: 0x7f050015
+			public const int lblForeCastHeadingTxt = 2131034133;
 			
 			// aapt resource value: 0x7f050004
 			public const int lblHighFCL = 2131034116;
@@ -93,11 +93,14 @@ namespace WeatherInfo
 			// aapt resource value: 0x7f05000f
 			public const int lblLine3WC = 2131034127;
 			
-			// aapt resource value: 0x7f050012
-			public const int lblSunrise = 2131034130;
-			
 			// aapt resource value: 0x7f050005
-			public const int lblSunset = 2131034117;
+			public const int lblLowFCL = 2131034117;
+			
+			// aapt resource value: 0x7f050013
+			public const int lblSunrise = 2131034131;
+			
+			// aapt resource value: 0x7f050014
+			public const int lblSunset = 2131034132;
 			
 			// aapt resource value: 0x7f05000a
 			public const int lblTempWC = 2131034122;

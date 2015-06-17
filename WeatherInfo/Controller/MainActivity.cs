@@ -19,6 +19,7 @@ using Android.Graphics;
 //https://query.yahooapis.com/v1/public/yql?q=qry&format=json
 
 //https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="bangalore") and u='c'&format=json 
+using System.Collections.Generic;
 
 
 
@@ -41,11 +42,12 @@ namespace WeatherInfo
 
 		ArrayAdapter adapter=null; 
 		GoogleMapPlaceClass objMapClass;
-
+		ForecastAdapterClass objForecastAdapterClass;
 		string autoCompleteOptions;
 		string[] strPredictiveText;
 		int index = 0;
 
+		List<Forecast> lstForeCast;
 		WeatherClass objYahooWeatherClass;
 		const string strGoogleApiKey="AIzaSyCaRfEwrLeUvdADPn_R9WQ_WrP3jBuFDfA";
 		const string  strAutoCompleteGoogleApi="https://maps.googleapis.com/maps/api/place/autocomplete/json?input=";
@@ -72,16 +74,10 @@ namespace WeatherInfo
 					if(strWeatherJson !="Exception")
 					{ 
 					objYahooWeatherClass = JsonConvert.DeserializeObject<WeatherClass>(strWeatherJson);
-
-					Console.WriteLine(" date "+ objYahooWeatherClass.query.results.channel.item.forecast[0].date);
-					Console.WriteLine(" day "+ objYahooWeatherClass.query.results.channel.item.forecast[0].day);
-					foreach(Forecast forecast in objYahooWeatherClass.query.results.channel.item.forecast)
-					{
-						Console.WriteLine(" code "+ forecast.code);
-						Console.WriteLine(" date "+ forecast.date);
-						Console.WriteLine(" day "+forecast.day);
-					}
-					BindData();
+						if(objYahooWeatherClass!=null)
+						{ 
+							BindData();
+						} 
 					}
 					else
 					{
@@ -107,6 +103,10 @@ namespace WeatherInfo
 			//take weather icon url from parsing  	objYahooWeatherClass.query.results.channel.item.description
 			string imageUrl = string.Format ( "http://l.yimg.com/a/i/us/we/52/{0}.gif" , objYahooWeatherClass.query.results.channel.item.condition.code );
 			Koush.UrlImageViewHelper.SetUrlDrawable ( imgCondition , imageUrl , Resource.Drawable.Icon );
+
+			lstForeCast=objYahooWeatherClass.query.results.channel.item.forecast;
+			objForecastAdapterClass = new ForecastAdapterClass ( this , lstForeCast );
+			ListViewForeCast.Adapter = objForecastAdapterClass;
 		}
 
 		async Task<bool> AutoCompleteLocation()
@@ -149,6 +149,8 @@ namespace WeatherInfo
 			lblSunSet=FindViewById<TextView> ( Resource.Id.lblSunset ); 
 			lblVisibility= FindViewById<TextView> ( Resource.Id.lblVisibility );
 			lblTitleCondition = FindViewById<TextView> ( Resource.Id.lblCurrentLocation );
+			lstForeCast = new List<Forecast> ();
+			ListViewForeCast = FindViewById<ListView> ( Resource.Id.ListViewForeCast );
 		}
 
 		async Task<string> fnDownloadString(string strUri)

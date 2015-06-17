@@ -9,16 +9,15 @@ namespace WeatherInfo
 	public class ForecastAdapterClass : BaseAdapter
 	{
 		Activity context;
-		List<string> lstCategory;
-		internal event Action<string> CategoryClicked; 
-		TextView lblCategory;
-		public ForecastAdapterClass (Activity c,List<string> lstCategoryArg )
+		List<Forecast> lstForecast; 
+		string imageUrl =  "http://l.yimg.com/a/i/us/we/52/{0}.gif" ;
+		public ForecastAdapterClass (Activity c,List<Forecast> _lstForecast )
 		{
 			context = c;
-			lstCategory = lstCategoryArg;
+			lstForecast = _lstForecast;
 		}
 		public override int Count {
-			get { return lstCategory.Count; }
+			get { return lstForecast.Count; }
 		}
 
 		public override Java.Lang.Object GetItem (int position)
@@ -34,25 +33,39 @@ namespace WeatherInfo
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{ 
 			View view = convertView;
+			ViewHolderClass objViewHolderClass;
 			if ( view == null )
 			{
 				view = context.LayoutInflater.Inflate ( Resource.Layout.ForecastCustomLayout , parent , false );  
+				objViewHolderClass = new ViewHolderClass ();
+				objViewHolderClass.imgWeather=view.FindViewById<ImageView> ( Resource.Id.imgWeatherIconFCL );
+				objViewHolderClass.txtTextCondition=view.FindViewById<TextView> ( Resource.Id.lblTextFCL );
+				objViewHolderClass.txtHigh=view.FindViewById<TextView> ( Resource.Id.lblHighFCL );
+				objViewHolderClass.txtLow=view.FindViewById<TextView> ( Resource.Id.lblLowFCL );
+				objViewHolderClass.txtDay=view.FindViewById<TextView> ( Resource.Id.lbldateDayFCL );
+				view.Tag = objViewHolderClass;
 			}
- 
-			lblCategory = view.FindViewById<TextView> ( Resource.Id.lblCategoryCustom );
-			lblCategory.Text = lstCategory [position].ToString();
-			lblCategory.PaintFlags = Android.Graphics.PaintFlags.UnderlineText;
-
+			else
+			{
+				objViewHolderClass =(ViewHolderClass) view.Tag;
+			}
+			objViewHolderClass.txtDay.Text = string.Format ( "{0},{1}" , lstForecast [position].day, lstForecast [position].date  );
+			objViewHolderClass.txtTextCondition.Text = lstForecast [position].text;
+			objViewHolderClass.txtHigh.Text =string.Format ( "High : {0}C" ,  lstForecast [position].high);
+			objViewHolderClass.txtLow.Text = string.Format ( "Low : {0}C" ,  lstForecast [position].low);
+			Koush.UrlImageViewHelper.SetUrlDrawable ( objViewHolderClass.imgWeather , string.Format( imageUrl,lstForecast[position].code), Resource.Drawable.Icon );
 			return view;
-		}  
+		} 
+		public  class ViewHolderClass :Java.Lang.Object
+		{
+			public  ImageView imgWeather;
+			public  TextView txtDay;
+			public  TextView txtTextCondition;
+			public  TextView txtHigh;
+			public  TextView txtLow;
+		}
 	}
-	static class ViewHolderClass
-	{
-		TextView txtDayDate;
-		ImageView imgWeather;
-		TextView txtTextCondition;
-		TextView txtHigh;
-		TextView txtLow;
-	}
+
+
 }
 

@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:background="#ffa6a6a6">
     <AutoCompleteTextView
         android:id="@+id/txtSearch"
@@ -44,7 +45,7 @@
         <LinearLayout
             android:id="@+id/llWeatherDataTxt"
             android:orientation="vertical"
-            android:layout_width="210dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="#ffeeeeee"
             android:layout_marginTop="5dp"
@@ -136,13 +137,28 @@
         </LinearLayout>
         <ImageView
             android:src="@drawable/icon"
-            android:layout_width="1200dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/imgWeatherIcon"
-            android:layout_toRightOf="@+id/llWeatherDataTxt"
-            android:layout_marginLeft="5dp"
             android:layout_centerInParent="false"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp" />
+        <TextView
+            android:id="@+id/lblConditionText"
+            android:layout_below="@+id/imgWeatherIcon"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:maxLines="2"
+            android:minLines="1"
+            android:text="Partly cloudy"
+            android:layout_marginTop="1dp"
+            android:textStyle="bold"
+            android:textColor="#ff000000"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/llWeatherDataTxt" />
         <TextView
             android:id="@+id/lblSunrise"
             android:layout_below="@+id/llWeatherDataTxt"
@@ -172,20 +188,6 @@
             android:textColor="#000000"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp" />
-        <TextView
-            android:id="@+id/lblConditionText"
-            android:layout_below="@+id/lblSunrise"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:maxLines="2"
-            android:minLines="1"
-            android:text="Partly cloudy"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"
-            android:textColor="#ff000000"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp" />
     </RelativeLayout>
     <TextView
         android:id="@+id/lblForeCastHeadingTxt"
