@@ -49,6 +49,14 @@ namespace WeatherInfo
 			{
 				objViewHolderClass =(ViewHolderClass) view.Tag;
 			}
+			if ( position == 0 )
+			{
+				view.SetBackgroundColor ( Android.Graphics.Color.ParseColor ( "#D6D6D6" ) );
+			}
+			else if ( position % 2 == 0 )
+			{
+				view.SetBackgroundColor ( Android.Graphics.Color.ParseColor ( "#D6D6D6" ) );
+			}
 			objViewHolderClass.txtDay.Text = string.Format ( "{0},{1}" , lstForecast [position].day, lstForecast [position].date  );
 			objViewHolderClass.txtTextCondition.Text = lstForecast [position].text;
 			objViewHolderClass.txtHigh.Text =string.Format ( "High : {0}C" ,  lstForecast [position].high);

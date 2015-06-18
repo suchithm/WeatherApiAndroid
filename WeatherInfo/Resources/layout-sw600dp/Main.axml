@@ -142,8 +142,9 @@
             android:id="@+id/imgWeatherIcon"
             android:layout_centerInParent="false"
             android:layout_marginTop="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp" />
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="false"
+            android:layout_toRightOf="@+id/llWeatherDataTxt" />
         <TextView
             android:id="@+id/lblConditionText"
             android:layout_below="@+id/imgWeatherIcon"

@@ -48,6 +48,12 @@
     <Reference Include="UrlImageViewHelper">
       <HintPath>..\..\..\..\Working Project\BlazeSolution\BlazeAndroidApp\bin\Release\UrlImageViewHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\..\..\..\Working Project\RushOver\RushOver\bin\Debug\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\..\..\..\Working Project\RushOver\RushOver\bin\Debug\Geolocator.Plugin.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -56,6 +62,7 @@
     <Compile Include="Controller\MainActivity.cs" />
     <Compile Include="Model\GooglePlaceClass.cs" />
     <Compile Include="Model\ForecastAdapterClass.cs" />
+    <Compile Include="Controller\MyWebViewActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -72,6 +79,7 @@
     <AndroidResource Include="Resources\layout-sw600dp\Main.axml" />
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\layout\ForecastCustomLayout.axml" />
+    <AndroidResource Include="Resources\layout\MyWebViewLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
