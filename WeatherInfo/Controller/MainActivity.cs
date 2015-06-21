@@ -75,6 +75,7 @@ namespace WeatherInfo
 						strLocation = txtLocation.Text;  
 						txtLocation.Text = string.Empty;
 						txtLocation.ClearFocus ();  
+
 						bool isValid =	await LocationSelected ();
 						if ( isValid )
 						{
