@@ -83,13 +83,28 @@ namespace WeatherInfo
 					}
 				}
 			}; 
-			lblTitleCondition.Click +=async delegate(object sender , EventArgs e )
-			{
-				bool isEnabled=await LocationSetting();
-				if((isEnabled)) 
-				{
-				await	GetCurrentPosition();
+			lblTitleCondition.Click += async delegate(object sender, EventArgs e) {
+
+				bool isEnabled = await LocationSetting ();
+				if ((isEnabled)) {
+					RunOnUiThread (() => {
+						progress = ProgressDialog.Show (this, "", "Please wait...");
+					});
+					//get the current location
+					bool gotLocaion =	await GetCurrentPosition ();
+
+					DismissActivityIndicator ();
+					//download and process yahoo weather data
+					bool isValid=false;
+					if (gotLocaion) {
+						isValid =	await LocationSelected ();
+					} 
+					//bind the data back to ui
+					if (isValid) { 
+						BindData ();
+					} 
 				}
+			
 			};
 			lblPoweredBy.Click+= delegate(object sender , EventArgs e )
 			{
@@ -134,6 +149,7 @@ namespace WeatherInfo
 					progress=ProgressDialog.Show(this,"","Please wait...");
 				});
 				string strWeatherJson = await fnDownloadString ( string.Format ( strYahooApi , Location ) );
+
 				DismissActivityIndicator();
 				if ( strWeatherJson != "Exception" )
 				{ 
@@ -336,7 +352,7 @@ namespace WeatherInfo
 				{
 					Intent intent =new Intent(Settings.ActionLocationSourceSettings);
 					StartActivity(intent);
-					fnAlertMsgOne(GetString(Resource.String.app_name),"Refresh","OK",this);
+					fnAlertMsgOne(GetString(Resource.String.app_name),"Try again now","OK",this);
 				}
 			});
 			alertMsg.SetButton(strCancel,delegate (object sender, DialogClickEventArgs e) 
@@ -361,7 +377,7 @@ namespace WeatherInfo
 				{
 					alertMsg.Dismiss ();
 					alertMsg=null;
-					GetCurrentPosition();
+					//GetCurrentPosition();
 //					updateCameraPosition(CurrentPosition);
 				}
 			});
@@ -369,72 +385,50 @@ namespace WeatherInfo
 		} 
 		async Task<bool>GetCurrentPosition()
 		{
-			try
-			{
+			bool done = false;
+			try {
 				var Locator = CrossGeolocator.Current;
 				Locator.DesiredAccuracy = 50;
-				var position = await Locator.GetPositionAsync ( timeout: 10000 ); 
-				Console.WriteLine ( position.Heading );
-				if ( position != null )
-				{
-					Geocoder geocoder = new Geocoder ( this );
-					IList<Address> addressList = await geocoder.GetFromLocationAsync ( position.Latitude , position.Longitude , 10 );
+				var position = await Locator.GetPositionAsync (timeout: 10000); 
+			
+				Console.WriteLine (position.Heading);
+				if (position != null) {
+					Geocoder geocoder = new Geocoder (this);
+					IList<Address> addressList = await geocoder.GetFromLocationAsync (position.Latitude, position.Longitude, 10);
 
 					Address address = addressList.FirstOrDefault ();
-					if ( address != null )
-					{
-//						StringBuilder deviceAddress = new StringBuilder ();
-//						for ( int i = 0 ; i < address.MaxAddressLineIndex ; i++ )
-//						{
-//							deviceAddress.Append ( address.GetAddressLine ( i ) )
-//							.AppendLine ( "," );
-//						}
-//						txtLocation.Text = deviceAddress.ToString ();
-						if ( address.MaxAddressLineIndex > 1 )
-						{
-							RunOnUiThread ( () =>
-							{
-								txtLocation.Text = address.GetAddressLine ( 1 );
-							} );
-						}
-						else
-						{
-							RunOnUiThread ( () =>
-							{
-								txtLocation.Text = address.GetAddressLine ( 0 );
-							} );
-						}
-						RunOnUiThread ( () =>
-						{
-							strLocation = txtLocation.Text;   
-							txtLocation.ClearFocus ();
-						} );
-						bool isValid=	await LocationSelected ();
-						if(isValid)
-						{
-							RunOnUiThread(()=>{
-								BindData();
+					if (address != null) {
+						done = true;
+						if (address.MaxAddressLineIndex > 1) {
+							RunOnUiThread (() => {
+								txtLocation.Text = address.GetAddressLine (1);
+							});
+						} else {
+							RunOnUiThread (() => {
+								txtLocation.Text = address.GetAddressLine (0);
 							});
 						}
+						RunOnUiThread (() => {
+							strLocation = txtLocation.Text;   
+							txtLocation.ClearFocus ();
+						});
+						
+					} else {
+						done = false;
+						RunOnUiThread (() => {
+							Toast.MakeText (this, "Unable to process at this moment!!!", ToastLength.Short).Show (); 
+						});
 					}
-					else
-					{
-						RunOnUiThread ( () =>
-						{
-							Toast.MakeText ( this , "Unable to process at this moment!!!" , ToastLength.Short ).Show (); 
-						} );
-					}
-				} 
+				} else {
+					done = false;
+				}
+			} catch {
+				RunOnUiThread (() => {
+					Toast.MakeText (this, "Unable to process at this moment!!!", ToastLength.Short).Show (); 
+				});
+				done = false;
 			}
-			catch
-			{
-				RunOnUiThread ( () =>
-				{
-					Toast.MakeText ( this , "Unable to process at this moment!!!" , ToastLength.Short ).Show (); 
-				} );
-				return false;
-			}
-			return true;
+			return done;
 		}
 		#endregion
 

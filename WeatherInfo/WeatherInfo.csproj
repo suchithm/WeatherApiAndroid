@@ -42,17 +42,17 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Working Project\YouMeUs\Components\json.net-4.5.11\lib\android\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="UrlImageViewHelper">
-      <HintPath>..\..\..\..\Working Project\BlazeSolution\BlazeAndroidApp\bin\Release\UrlImageViewHelper.dll</HintPath>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\MonoAndroid10\Geolocator.Plugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Geolocator.Plugin">
-      <HintPath>..\..\..\..\Working Project\RushOver\RushOver\bin\Debug\Geolocator.Plugin.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\MonoAndroid10\Geolocator.Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="Geolocator.Plugin.Abstractions">
-      <HintPath>..\..\..\..\Working Project\RushOver\RushOver\bin\Debug\Geolocator.Plugin.Abstractions.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UrlImageViewHelper">
+      <HintPath>..\Components\urlimageviewhelper-1.0.4\lib\android\UrlImageViewHelper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +68,8 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -76,10 +78,12 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\layout-sw600dp\Main.axml" />
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\layout\ForecastCustomLayout.axml" />
     <AndroidResource Include="Resources\layout\MyWebViewLayout.axml" />
+    <AndroidResource Include="Resources\layout-sw600dp\Main.axml" />
+    <AndroidResource Include="Resources\layout-sw600dp\MyWebViewLayout.axml" />
+    <AndroidResource Include="Resources\layout-sw600dp\ForecastCustomLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -87,5 +91,19 @@
     <Folder Include="Resources\layout\" />
     <Folder Include="Model\" />
     <Folder Include="Controller\" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="GeolocatorPlugin">
+      <Version>1.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="json.net">
+      <Version>6.0.8.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="urlimageviewhelper">
+      <Version>1.0.4</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>
