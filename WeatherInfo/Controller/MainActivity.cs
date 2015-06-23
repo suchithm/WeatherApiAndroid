@@ -20,7 +20,7 @@ using System.Linq;
 
 namespace WeatherInfo
 {
-	[Activity ( Label = "Weather Condition" , MainLauncher = true , Icon = "@drawable/icon" )]
+	[Activity ( Label = "WeatherCondition" , MainLauncher = true , Icon = "@drawable/icon" )]
 	public class MainActivity : Activity
 	{ 
 		ImageView imgCondition;
@@ -233,7 +233,8 @@ namespace WeatherInfo
 				txtLocation.Adapter = adapter;  
 			}
 			catch
-			{  
+			{   
+				DismissActivityIndicator();
 				Toast.MakeText ( this , "Unable to touch server at this moment!!!" , ToastLength.Short ).Show (); 
 			}
 			return true;
@@ -280,7 +281,8 @@ namespace WeatherInfo
 			}
 			catch
 			{
-				strResultData = "Exception";
+				strResultData = "Exception"; 
+				DismissActivityIndicator();
 				RunOnUiThread ( () =>
 				{ 
 					Toast.MakeText ( this , "Unable to connect to server!!!" , ToastLength.Short ).Show ();
@@ -416,6 +418,7 @@ namespace WeatherInfo
 						
 					} else {
 						done = false;
+						DismissActivityIndicator();
 						RunOnUiThread (() => {
 							Toast.MakeText (this, "Unable to process at this moment!!!", ToastLength.Short).Show (); 
 						});
@@ -424,6 +427,8 @@ namespace WeatherInfo
 					done = false;
 				}
 			} catch {
+
+				DismissActivityIndicator();
 				RunOnUiThread (() => {
 					Toast.MakeText (this, "Unable to process at this moment!!!", ToastLength.Short).Show (); 
 				});

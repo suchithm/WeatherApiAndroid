@@ -16,7 +16,7 @@
         android:textColor="#ff000000"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:gravity="center" />
+        android:gravity="left" />
     <ImageView
         android:src="@drawable/icon"
         android:layout_width="80dp"
@@ -42,7 +42,7 @@
         android:textColor="#ff000000"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:gravity="center" />
+        android:gravity="left" />
     <TextView
         android:id="@+id/lblHighFCL"
         android:layout_below="@+id/lblTextFCL"

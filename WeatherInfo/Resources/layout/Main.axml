@@ -154,7 +154,7 @@
             android:layout_below="@+id/llImgWraper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="15dp"
             android:maxLines="2"
             android:minLines="1"
             android:text="Partly cloudy"
